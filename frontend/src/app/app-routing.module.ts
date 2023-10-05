@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarsComponent } from './cars/cars.component';
+import { CarsFormComponent } from './cars/cars-form/cars-form.component';
+import { CarsListComponent } from './cars/cars-list/cars-list.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: CarsComponent,
-    title: 'Carros'
+    path: 'cars/add',
+    component: CarsFormComponent,
+    title: 'Adicionar carros'
+  },
+  {
+    path: 'cars/list',
+    component: CarsListComponent,
+    title: 'Listagem de carros'
   }
 ];
 

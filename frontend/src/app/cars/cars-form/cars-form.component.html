@@ -2,29 +2,24 @@
     <form [formGroup]="carsForm" class="row">
         <div class="col-sm-3">
             <label for="brand" class="form-label">Brand:</label>
-            <input type="text" id="brand" class="form-control" placeholder="Brand"
-                formControlName="brand"/>
+            <input type="text" id="brand" class="form-control" placeholder="Brand" formControlName="brand" />
         </div>
         <div class="col-sm-4">
             <label for="model" class="form-label">Model:</label>
-            <input type="text" id="model" class="form-control" placeholder="Model"
-                formControlName="model"/>
+            <input type="text" id="model" class="form-control" placeholder="Model" formControlName="model" />
         </div>
         <div class="col-sm-2">
             <label for="color" class="form-label">Color:</label>
-            <input type="text" id="color" class="form-control" placeholder="Color"
-                formControlName="color"/>
+            <input type="text" id="color" class="form-control" placeholder="Color" formControlName="color" />
         </div>
         <div class="col-sm-2">
             <label for="year" class="form-label">Ano:</label>
-            <input type="number" id="year" class="form-control" placeholder="Ano"
-                formControlName="year"/>
+            <input type="number" id="year" class="form-control" placeholder="Ano" formControlName="year" />
         </div>
         <div class="col-sm-3  d-grid mt-3">
             <button type="button" class="btn btn-primary  btn-sm" (click)="store()">Enviar</button>
         </div>
-        <div class="text-center">
-            {{ message }}
-        </div>
     </form>
+    <app-message message="{{ message }}">
+    </app-message>
 </div>

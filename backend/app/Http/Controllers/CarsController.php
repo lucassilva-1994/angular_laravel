@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class CarsController extends Controller
 {
+    public function all(){
+        return Car::all();
+    }
     public function store(Request $request){
         $car = Car::create($request->all());
         if($car){
