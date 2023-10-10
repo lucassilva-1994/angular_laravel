@@ -1,18 +1,25 @@
 <table class="table  container mt-3">
     <thead>
       <tr>
-        <th>Brand: </th>
-        <th>Color: </th>
-        <th>Model: </th>
-        <th>Year: </th>
+        <th># </th>
+        <th>Brand </th>
+        <th>Color </th>
+        <th>Model </th>
+        <th>Year </th>
+        <th>Ações </th>
       </tr>
     </thead>
     <tbody *ngFor="let car of cars">
         <tr>
+            <td>{{ car.id }}</td>
             <td>{{ car.brand }}</td>
             <td>{{ car.color }}</td>
             <td>{{ car.model }}</td>
             <td>{{ car.year }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="remove(car.id)">Excluir</button>
+            </td>
         </tr>
     </tbody>
   </table>
+  <app-message message="{{ message }}" *ngIf="message"></app-message>

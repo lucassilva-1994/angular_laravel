@@ -16,6 +16,7 @@ export class CarsFormComponent {
     });
 
     message: string = '';
+    class: string = '';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -23,13 +24,17 @@ export class CarsFormComponent {
     ) {
 
     }
-    ngOnInit(): void { }
+    ngOnInit(): void {
+    }
 
     store() {
+        this.message = "Enviando registro...";
+        this.class = "secondary";
         const cars = this.carsForm.getRawValue() as Car;
         this.carsService.store(cars)
             .subscribe(() => {
                 this.message = "Carro cadastrado com sucesso.";
+                this.class = "success";
                 this.carsForm.reset();
             });
     }

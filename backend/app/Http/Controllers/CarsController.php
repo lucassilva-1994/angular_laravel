@@ -17,4 +17,9 @@ class CarsController extends Controller
         }
         return response()->json(['Falha ao registrar veiculo.']);
     }
+
+    public function delete(int $id){
+        $car = Car::where('id',$id)->first();
+        return $car->delete();
+    }
 }

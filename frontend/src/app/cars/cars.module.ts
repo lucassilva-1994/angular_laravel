@@ -5,21 +5,26 @@ import { HttpClientModule } from "@angular/common/http";
 import { CarsListComponent } from "./cars-list/cars-list.component";
 import { CarsFormComponent } from "./cars-form/cars-form.component";
 import { MessageComponent } from "./message/message.component";
+import { RouterModule } from "@angular/router";
+import { HeaderComponent } from "../shared/header/header.component";
 
 @NgModule({
     declarations: [ 
         CarsListComponent,
         CarsFormComponent,
-        MessageComponent
+        MessageComponent,
+        HeaderComponent
      ],
     exports: [
         CarsListComponent,
-        CarsFormComponent
+        CarsFormComponent,
+        HeaderComponent
      ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterModule
     ]
 })
 export class CarsModule{

@@ -5,6 +5,12 @@ import { CarsListComponent } from './cars/cars-list/cars-list.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  
+  {
     path: 'cars/add',
     component: CarsFormComponent,
     title: 'Adicionar carros'
@@ -13,7 +19,12 @@ const routes: Routes = [
     path: 'cars/list',
     component: CarsListComponent,
     title: 'Listagem de carros'
-  }
+  },
+  {
+    path: 'cars/:id',
+    component: CarsFormComponent,
+    title: 'Detalhes do carro.'
+  },
 ];
 
 @NgModule({

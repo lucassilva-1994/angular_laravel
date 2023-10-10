@@ -16,4 +16,8 @@ export class CarsService{
     listAll(){
         return this.httpClient.get<Car[]>(API + '/all');
     }
+
+    remove(id: number){
+        return this.httpClient.delete(API + '/delete/'+id);
+    }
 }

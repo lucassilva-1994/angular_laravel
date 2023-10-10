@@ -8,11 +8,17 @@ import { CarsService } from "../cars.service";
 })
 export class CarsListComponent implements OnInit{
     cars: Car[] = [];
+    message: string = '';
     constructor(private carsService: CarsService){}
     
     ngOnInit(): void {
         this.carsService.listAll().subscribe(
             cars => { this.cars = cars }
         );
+    }
+
+    remove(id: number){
+        this.carsService.remove(id).subscribe(() => 
+        this.message = "Carro removido com sucesso.");
     }
 }
