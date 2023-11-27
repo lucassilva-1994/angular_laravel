@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Car } from "../car";
 import { CarsService } from "../cars.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-cars-list',
@@ -9,7 +10,9 @@ import { CarsService } from "../cars.service";
 export class CarsListComponent implements OnInit{
     cars: Car[] = [];
     message: string = '';
-    constructor(private carsService: CarsService){}
+    constructor(
+        private carsService: CarsService,
+        private router: Router){}
     
     ngOnInit(): void {
         this.carsService.listAll().subscribe(
@@ -18,7 +21,11 @@ export class CarsListComponent implements OnInit{
     }
 
     remove(id: number){
-        this.carsService.remove(id).subscribe(() => 
-        this.message = "Carro removido com sucesso.");
+        this.carsService.remove(id).subscribe(() =>
+            this.message = "Carro removido com sucesso.");
+    }
+
+    edit(id: number){
+        this.router.navigate(['edit', id]);
     }
 }

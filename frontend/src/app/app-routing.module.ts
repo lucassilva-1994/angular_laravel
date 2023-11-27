@@ -21,10 +21,10 @@ const routes: Routes = [
     title: 'Listagem de carros'
   },
   {
-    path: 'cars/:id',
+    path: 'edit/:id',
     component: CarsFormComponent,
-    title: 'Detalhes do carro.'
-  },
+    title: 'Editar carro'
+  }
 ];
 
 @NgModule({

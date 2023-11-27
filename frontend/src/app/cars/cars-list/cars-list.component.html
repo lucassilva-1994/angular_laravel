@@ -17,7 +17,8 @@
             <td>{{ car.model }}</td>
             <td>{{ car.year }}</td>
             <td>
-              <button class="btn btn-danger btn-sm" (click)="remove(car.id)">Excluir</button>
+              <button class="btn btn-danger btn-sm" (click)="remove(car.id)">Excluir</button> &nbsp;
+              <button class="btn btn-primary btn-sm" (click)="edit(car.id)">Editar</button>
             </td>
         </tr>
     </tbody>
