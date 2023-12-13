@@ -24,4 +24,8 @@ export class CarsService{
     remove(id: number){
         return this.httpClient.delete(API + '/delete/'+id);
     }
+
+    update(id:number, car:Car){
+        return this.httpClient.put(API+'/update/'+id,car);
+    }
 }

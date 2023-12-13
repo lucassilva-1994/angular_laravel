@@ -10,5 +10,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('all',[CarsController::class, 'all']);
 Route::get('listById/{id}',[CarsController::class, 'listById']);
-Route::post('/store',[CarsController::class,'store']);
+Route::post('store',[CarsController::class,'store']);
 Route::delete('delete/{id}',[CarsController::class,'delete']);
+Route::put('update/{id}',[CarsController::class,'update']);

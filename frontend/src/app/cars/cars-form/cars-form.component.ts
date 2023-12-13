@@ -10,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class CarsFormComponent {
     carsForm: FormGroup = this.formBuilder.group({
+        id:[''],
         brand: ['', Validators.required],
         color: ['', Validators.required],
         year: ['', Validators.required],
@@ -19,6 +20,7 @@ export class CarsFormComponent {
     errors = [];
     message: string = '';
     class: string = '';
+    edit:boolean = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -28,12 +30,16 @@ export class CarsFormComponent {
 
     }
     ngOnInit(): void {
-        // this.route.params.subscribe(
-        //     (params: any) => {
-        //         const id = params['id'];
-        //         console.log(id)
-        //     }
-        // );
+        const id = this.route.snapshot.params['id'];
+        if(id){
+            const car = this.carsService.listById(id)
+            .subscribe(
+                dados => {
+                    this.carsForm.patchValue(dados);
+                }
+            );
+            this.edit = true;
+        }
     }
 
     store() {
@@ -51,5 +57,16 @@ export class CarsFormComponent {
                 this.message = '';
                 this.class = '';
             });
+    }
+
+    update(){
+        const id = this.carsForm.get('id')?.value;
+        const cars = this.carsForm.getRawValue() as Car;
+        this.carsService.update(id,cars).subscribe(
+            () => { 
+                this.message = "Carro atualizado com sucesso.",
+                this.class = "success";
+            }
+        );
     }
 }
