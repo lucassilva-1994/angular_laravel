@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarsModule } from './cars/cars.module';
 
+import { LoadmorebuttonComponent } from './shared/loadmorebutton/loadmorebutton.component';
+
 @NgModule({
   declarations: [
     AppComponent,

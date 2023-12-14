@@ -4,4 +4,5 @@ export interface Car{
     color: string;
     year: number;
     model: string;
+    created_at: Date
 }

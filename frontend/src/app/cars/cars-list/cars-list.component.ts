@@ -8,9 +8,11 @@ import { Router } from "@angular/router";
     templateUrl: './cars-list.component.html'
 })
 export class CarsListComponent implements OnInit{
-    cars: any[] = [];
-    message: string = '';
+    cars: Car[] = [];
+    message: any;
     class: string = '';
+    hasMore:boolean = true;
+    currentPage = 1;
     constructor(
         private carsService: CarsService,
         private router: Router){}
@@ -20,16 +22,24 @@ export class CarsListComponent implements OnInit{
     }
 
     list(){
-        this.carsService.listAll().subscribe(
+        this.carsService.listAll(this.currentPage).subscribe(
             cars =>  this.cars = cars 
         );
+    }
+
+    loadMore(){
+        this.carsService.listAll(++this.currentPage)
+            .subscribe(cars => {
+                this.cars.push(...cars);
+                if(!cars.length) this.hasMore = false;
+            });
     }
 
     remove(id: number){
         this.carsService.remove(id)
         .subscribe(res => {
             this.list();
-            this.message = 'Carro removido com sucesso.';
+            this.message = res;
             this.class = 'success';
         })
     }

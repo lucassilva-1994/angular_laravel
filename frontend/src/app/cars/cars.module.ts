@@ -7,18 +7,21 @@ import { CarsFormComponent } from "./cars-form/cars-form.component";
 import { MessageComponent } from "./message/message.component";
 import { RouterModule } from "@angular/router";
 import { HeaderComponent } from "../shared/header/header.component";
+import { LoadmorebuttonComponent } from "../shared/loadmorebutton/loadmorebutton.component";
 
 @NgModule({
     declarations: [ 
         CarsListComponent,
         CarsFormComponent,
         MessageComponent,
-        HeaderComponent
+        HeaderComponent,
+        LoadmorebuttonComponent
      ],
     exports: [
         CarsListComponent,
         CarsFormComponent,
-        HeaderComponent
+        HeaderComponent,
+        LoadmorebuttonComponent
      ],
     imports: [
         CommonModule,

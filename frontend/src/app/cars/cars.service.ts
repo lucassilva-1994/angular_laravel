@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Car } from "./car";
 import { environment } from "src/environments/environment";
@@ -14,8 +14,10 @@ export class CarsService{
         return this.httpClient.post(API+'/store',car);
     }
 
-    listAll(){
-        return this.httpClient.get<Car[]>(API + '/all');
+    listAll(page:number){
+        const params = new HttpParams()
+        .append('page',page.toString());
+        return this.httpClient.get<Car[]>(API + '/all',{params});
     }
 
     listById(id: number){
