@@ -4,11 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
-    protected $table = "cars";
+    protected $table = 'cars';
     protected $fillable = [
-        "brand",
-        "model",
-        "color",
-        "year"
+        'brand',
+        'model',
+        'color',
+        'year'
     ];
 }

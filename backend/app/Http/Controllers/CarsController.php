@@ -2,12 +2,11 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\CarsRequest;
 use App\Models\Car;
-use Illuminate\Http\Request;
 
 class CarsController extends Controller
 {
     public function all(){
-        return Car::all();
+        return response()->json(Car::orderBy('id','DESC')->paginate(10)->flatten());
     }
 
     public function listById(int $id){
@@ -23,12 +22,11 @@ class CarsController extends Controller
     }
 
     public function delete(int $id){
-        $car = Car::where('id',$id)->first();
-        return $car->delete();
+        return Car::find($id)->delete();
     }
 
-    public function update(Request $request,$id){
-        $car = Car::where('id', $id)->update($request->all());
+    public function update(CarsRequest $request,$id){
+        $car = Car::find($id)->update($request->all());
         if($car){
             return response()->json(['Atualizado com sucesso.']);
         }

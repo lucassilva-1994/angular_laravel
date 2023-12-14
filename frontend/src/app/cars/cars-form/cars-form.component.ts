@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Car } from "../car";
 import { CarsService } from "../cars.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'app-cars-form',
@@ -10,7 +10,6 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class CarsFormComponent {
     carsForm: FormGroup = this.formBuilder.group({
-        id:[''],
         brand: ['', Validators.required],
         color: ['', Validators.required],
         year: ['', Validators.required],
@@ -21,18 +20,19 @@ export class CarsFormComponent {
     message: string = '';
     class: string = '';
     edit:boolean = false;
+    id?:number;
 
     constructor(
         private formBuilder: FormBuilder,
         private carsService: CarsService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
     ) {
 
     }
     ngOnInit(): void {
-        const id = this.route.snapshot.params['id'];
-        if(id){
-            const car = this.carsService.listById(id)
+        this.id = this.route.snapshot.params['id'];
+        if(this.id){
+            this.carsService.listById(this.id)
             .subscribe(
                 dados => {
                     this.carsForm.patchValue(dados);
@@ -60,12 +60,14 @@ export class CarsFormComponent {
     }
 
     update(){
-        const id = this.carsForm.get('id')?.value;
-        const cars = this.carsForm.getRawValue() as Car;
-        this.carsService.update(id,cars).subscribe(
+        const cars = this.carsForm.getRawValue();
+        this.carsService.update(this.id,cars).subscribe(
             () => { 
                 this.message = "Carro atualizado com sucesso.",
                 this.class = "success";
+            },
+            error => {
+                this.errors = Object.values(error.error.errors) 
             }
         );
     }

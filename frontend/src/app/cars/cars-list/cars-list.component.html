@@ -1,26 +1,41 @@
-<table class="table  container mt-3">
-    <thead>
-      <tr>
-        <th># </th>
-        <th>Brand </th>
-        <th>Color </th>
-        <th>Model </th>
-        <th>Year </th>
-        <th>Ações </th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let car of cars">
-        <tr>
-            <td>{{ car.id }}</td>
-            <td>{{ car.brand }}</td>
-            <td>{{ car.color }}</td>
-            <td>{{ car.model }}</td>
-            <td>{{ car.year }}</td>
-            <td>
-              <button class="btn btn-danger btn-sm" (click)="remove(car.id)">Excluir</button> &nbsp;
-              <button class="btn btn-primary btn-sm" (click)="edit(car.id)">Editar</button>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-  <app-message message="{{ message }}" *ngIf="message"></app-message>
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-header">
+      <h3>Listagem de carros</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <app-message message="{{ message }}" class="{{ class }}" *ngIf="message"></app-message>
+        <table class="table table-hover container">
+          <thead>
+            <tr class="text-nowrap">
+              <th># </th>
+              <th>Brand:</th>
+              <th>Color:</th>
+              <th>Model:</th>
+              <th>Year:</th>
+              <th>Cadastrado em:</th>
+              <th>Ações:</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let car of cars">
+            <tr class="text-nowrap">
+              <td>{{ car.id }}</td>
+              <td>{{ car.brand }}</td>
+              <td>{{ car.color }}</td>
+              <td>{{ car.model }}</td>
+              <td>{{ car.year }}</td>
+              <td>{{ car.created_at|date:'dd/MM/yyyy HH:mm:ss' }}</td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn btn-danger btn-sm" (click)="remove(car.id)">Excluir</button>
+                  <button class="btn btn-primary btn-sm" (click)="edit(car.id)">Editar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

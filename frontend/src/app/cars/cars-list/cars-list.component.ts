@@ -8,21 +8,30 @@ import { Router } from "@angular/router";
     templateUrl: './cars-list.component.html'
 })
 export class CarsListComponent implements OnInit{
-    cars: Car[] = [];
+    cars: any[] = [];
     message: string = '';
+    class: string = '';
     constructor(
         private carsService: CarsService,
         private router: Router){}
     
     ngOnInit(): void {
+        this.list();
+    }
+
+    list(){
         this.carsService.listAll().subscribe(
-            cars => { this.cars = cars }
+            cars =>  this.cars = cars 
         );
     }
 
     remove(id: number){
-        this.carsService.remove(id).subscribe(() =>
-            this.message = "Carro removido com sucesso.");
+        this.carsService.remove(id)
+        .subscribe(res => {
+            this.list();
+            this.message = 'Carro removido com sucesso.';
+            this.class = 'success';
+        })
     }
 
     edit(id: number){

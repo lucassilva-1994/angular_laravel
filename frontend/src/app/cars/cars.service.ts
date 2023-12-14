@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Car } from "./car";
 import { environment } from "src/environments/environment";
+import { Observable } from "rxjs";
 
 const API = environment.apiUrl;
 
@@ -25,7 +26,7 @@ export class CarsService{
         return this.httpClient.delete(API + '/delete/'+id);
     }
 
-    update(id:number, car:Car){
+    update(id:any, car:Car){
         return this.httpClient.put(API+'/update/'+id,car);
     }
 }
