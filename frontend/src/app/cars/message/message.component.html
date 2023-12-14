@@ -1,3 +1,5 @@
-<div class="alert alert-{{ class }} mt-3" *ngIf="message">
-    {{ message }}
+<div *ngIf="displayMessage">
+    <div class="alert alert-{{ class }} mt-3" *ngIf="message">
+        {{ message }}
+    </div>
 </div>
