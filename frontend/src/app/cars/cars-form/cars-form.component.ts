@@ -17,7 +17,7 @@ export class CarsFormComponent {
     });
 
     errors = [];
-    message:any = '';
+    message:string = '';
     class: string = '';
     edit:boolean = false;
     id?:number;
@@ -48,7 +48,7 @@ export class CarsFormComponent {
         const cars = this.carsForm.getRawValue() as Car;
         this.carsService.store(cars)
             .subscribe(response => {
-                this.message = response;
+                this.message = response.toString();
                 this.class = "success";
                 this.errors = [];
                 this.carsForm.reset();
@@ -63,7 +63,7 @@ export class CarsFormComponent {
         const cars = this.carsForm.getRawValue();
         this.carsService.update(this.id,cars).subscribe(
             res => { 
-                this.message = res,
+                this.message = res.toString(),
                 this.class = "success";
             },
             error => {

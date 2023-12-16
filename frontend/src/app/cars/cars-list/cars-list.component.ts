@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Car } from "../car";
 import { CarsService } from "../cars.service";
 import { Router } from "@angular/router";
+import { delay } from "rxjs";
 
 @Component({
     selector: 'app-cars-list',
@@ -9,16 +10,24 @@ import { Router } from "@angular/router";
 })
 export class CarsListComponent implements OnInit{
     cars: Car[] = [];
-    message: any;
+    message: string = '';
     class: string = '';
     hasMore:boolean = true;
     currentPage = 1;
+    displayMessage: boolean = false;
+
+    showMessage(){
+        this.displayMessage = true;
+        setTimeout(() => {
+            this.displayMessage= false;
+        }, 5000);
+    }
     constructor(
         private carsService: CarsService,
         private router: Router){}
     
     ngOnInit(): void {
-        this.list();
+            this.list();
     }
 
     list(){
@@ -30,7 +39,7 @@ export class CarsListComponent implements OnInit{
     loadMore(){
         this.carsService.listAll(++this.currentPage)
             .subscribe(cars => {
-                this.cars.push(...cars);
+                this.cars = this.cars.concat(cars);
                 if(!cars.length) this.hasMore = false;
             });
     }
@@ -38,8 +47,9 @@ export class CarsListComponent implements OnInit{
     remove(id: number){
         this.carsService.remove(id)
         .subscribe(res => {
+            this.showMessage();
             this.list();
-            this.message = res;
+            this.message = res.toString();
             this.class = 'success';
         })
     }

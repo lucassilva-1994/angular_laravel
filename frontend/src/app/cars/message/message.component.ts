@@ -4,14 +4,7 @@ import { Component, Input, OnInit } from "@angular/core";
     selector: 'app-message',
     templateUrl: './message.component.html'
 })
-export class MessageComponent implements OnInit{
+export class MessageComponent{
     @Input() message = '';
     @Input() class = '';
-    displayMessage:boolean = true;
-
-    ngOnInit(): void {
-        setTimeout(()=>{
-            this.displayMessage = false
-        },5000)
-    }
 }
