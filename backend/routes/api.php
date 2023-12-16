@@ -29,7 +29,7 @@ Route::controller(SchoolsController::class)->prefix('/schools')->group(function(
 
 Route::controller(EmployeesController::class)->prefix('/employees')->group(function(){
     Route::get('/get','get');
-    Route::get('/getById','getById');
+    Route::get('/getById/{id}','getById');
     Route::post('/create','create');
     Route::put('/update/{id}','update');
     Route::delete('/delete/{id}','delete');
@@ -37,7 +37,7 @@ Route::controller(EmployeesController::class)->prefix('/employees')->group(funct
 
 Route::controller(StudentsController::class)->prefix('/students')->group(function(){
     Route::get('/get','get');
-    Route::get('/getById','getById');
+    Route::get('/getById/{id}','getById');
     Route::post('/create','create');
     Route::put('/update/{id}','update');
     Route::delete('/delete/{id}','delete');

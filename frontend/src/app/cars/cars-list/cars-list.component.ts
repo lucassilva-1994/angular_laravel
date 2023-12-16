@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { Car } from "../car";
 import { CarsService } from "../cars.service";
 import { Router } from "@angular/router";
-import { delay } from "rxjs";
 
 @Component({
     selector: 'app-cars-list',

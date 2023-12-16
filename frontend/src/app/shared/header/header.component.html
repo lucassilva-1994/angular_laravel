@@ -1,6 +1,22 @@
-<div class="container">
-    <nav class="navbar">
-        <a [routerLink]="['/cars/add']" routerLinkActive="link-success">Adicionar carros</a>
-        <a [routerLink]="['/cars/list']"  routerLinkActive="link-success">Listar carros</a>
-    </nav>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #121d3e">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/schools/list']" routerLinkActive="link-light">Escolas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Funcionários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Alunos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

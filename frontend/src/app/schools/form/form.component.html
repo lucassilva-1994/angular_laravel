@@ -1,0 +1,40 @@
+<div class="text-end mb-3">
+    <div class="btn-group btn-group-sm">
+        <a [routerLink]="['/schools/add']" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Novo</a>
+        <a [routerLink]="['/schools/list']" class="btn btn-primary"><i class="bi bi-list"></i> Listagem</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>{{ title }}</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form" class="row">
+            <div class="col-md-9">
+                <label for="name">Nome:</label>
+                <input type="text" class="form-control" formControlName="name"/>
+            </div>
+            <div class="col-md-3">
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" class="form-control  ngx-mask" formControlName="cnpj" mask="00.000.000/0000-00"/>
+            </div>
+            <div class="col-md-12">
+                <label for="address">Endereço:</label>
+                <input type="text" class="form-control" formControlName="address"/>
+            </div>
+            <div class="col-md-6">
+                <label for="phone">Telefone:</label>
+                <input type="text" class="form-control ngx-mask" formControlName="phone"  mask="(00) 0000-0000"/>
+            </div>
+            <div class="col-md-6">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" formControlName="email"/>
+            </div>
+            <div class="mt-3 d-grid col-md-4">
+                <button class="btn btn-primary" *ngIf="edit" (click)="update()"><i class="bi bi-send-check-fill"></i> Atualizar</button>
+                <button class="btn btn-primary" *ngIf="!edit" (click)="create()"><i class="bi bi-send-check-fill"></i> Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>

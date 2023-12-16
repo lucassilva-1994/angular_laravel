@@ -20,8 +20,9 @@ class StudentsController extends Controller
 
     public function create(Request $request){
         try {
-            if(self::setData($request->all(),Student::class)){
-                return response()->json('Registro inserindo com sucesso.');
+            $create = self::setData($request->all(),Student::class);
+            if($create){
+                return response()->json([$create,'Registro inserindo com sucesso.']);
             }
         } catch (\Throwable $th) {
             return response()->json($th);

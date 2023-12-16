@@ -10,7 +10,7 @@ class SchoolsController extends Controller
 {
     use Model;
     public function get(){
-        $schools = School::with('employees','students')->paginate(50);
+        $schools = School::paginate(50)->load('employees','students')->flatten();
         return response()->json($schools);
     }
 
