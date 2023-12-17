@@ -1,3 +1,5 @@
+import { School } from "./School";
+
 export interface Employee{
     id:string;
     order:number;
@@ -7,5 +9,5 @@ export interface Employee{
     phone:string;
     birth_date: Date;
     created_at: Date;
-    School:[]
+    School:School
 }

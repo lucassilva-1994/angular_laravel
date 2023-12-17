@@ -1,3 +1,6 @@
+import { Employee } from "./Employee";
+import { Student } from "./Student";
+
 export interface School {
     id:string;
     order:number;
@@ -6,7 +9,7 @@ export interface School {
     email:string;
     phone:string;
     address: string;
-    created_at: Date
-    employees:[],
-    students:[]
+    created_at: Date;
+    employees:Employee[];
+    students:Student[];
 }

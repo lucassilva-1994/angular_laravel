@@ -12,18 +12,27 @@ export class ListComponent implements OnInit {
   title: string = 'escolas';
   loading: boolean = true;
   message: string = "Carregando...";
+  search:string='';
   constructor(private schoolService: SchoolsService) { }
   ngOnInit(): void {
     this.getSchools();
   }
 
   getSchools() {
-    this.schoolService.getSchools().subscribe(schools =>
+    this.schoolService.getSchools(this.search).subscribe(schools =>
       this.schools = Object.values(schools), error => {
         console.log(error);
       }, () => {
         this.loading = false;
       });
+  }
+
+  schoolsFilter(){
+    setTimeout(() => {
+      this.schoolService.getSchools(this.search).subscribe(schools => {
+        this.schools = Object.values(schools)
+      });
+    }, 400);
   }
 
   delete(id: string) {

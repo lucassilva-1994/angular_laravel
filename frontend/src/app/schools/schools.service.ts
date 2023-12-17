@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { School } from '../interfaces/School';
+import { Observable } from 'rxjs';
 
 const apiUrl = environment.apiUrl;
 @Injectable({
@@ -11,8 +12,9 @@ export class SchoolsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSchools() {
-    return this.httpClient.get(apiUrl + '/schools/get');
+  getSchools(search: string): Observable<School> {
+    let params = new HttpParams().set('?search',search);
+    return this.httpClient.get<School>(apiUrl + '/schools/get', { params });
   }
 
   getById(id: string) {
