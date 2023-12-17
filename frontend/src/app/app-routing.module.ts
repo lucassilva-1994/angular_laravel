@@ -25,9 +25,9 @@ const routes: Routes = [
     component: CarsFormComponent,
     title: 'Editar carro'
   },
-  { path: 'schools', loadChildren: () => import('./schools/schools.module').then(m => m.SchoolsModule) },
-  { path: 'employees', loadChildren: () => import('./employees/employees.module').then(m => m.EmployeesModule) },
-  { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) }
+  { path: 'schools', loadChildren: () => import('./components/schools/schools.module').then(m => m.SchoolsModule) },
+  { path: 'employees', loadChildren: () => import('./components/employees/employees.module').then(m => m.EmployeesModule) },
+  { path: 'students', loadChildren: () => import('./components/students/students.module').then(m => m.StudentsModule) }
 ];
 
 @NgModule({

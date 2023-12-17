@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SchoolsComponent } from './schools.component';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   { 
     path: '', 
-    component: SchoolsComponent,
-    title: 'Escolas'
-  },
-  {
-    path:'list',
     component: ListComponent,
-    title: 'Listagem'
+    title: 'Escolas'
   },
   {
     path:'add',

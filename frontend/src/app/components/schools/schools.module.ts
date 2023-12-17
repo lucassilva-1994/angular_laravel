@@ -7,9 +7,9 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-import { MessageComponent } from '../shared/message/message.component';
-import { CnpjPipe } from '../pipes/cnpj.pipe';
-import { PhonePipe } from '../pipes/phone.pipe';
+import { PhonePipe } from 'src/app/pipes/phone.pipe';
+import { CnpjPipe } from 'src/app/pipes/cnpj.pipe';
+import { MessageComponent } from 'src/app/shared/message/message.component';
 
 
 @NgModule({
