@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { CarsListComponent } from "./cars-list/cars-list.component";
 import { CarsFormComponent } from "./cars-form/cars-form.component";
-import { MessageComponent } from "./message/message.component";
 import { RouterModule } from "@angular/router";
 import { HeaderComponent } from "../shared/header/header.component";
 import { LoadmorebuttonComponent } from "../shared/loadmorebutton/loadmorebutton.component";
@@ -13,7 +12,6 @@ import { LoadmorebuttonComponent } from "../shared/loadmorebutton/loadmorebutton
     declarations: [ 
         CarsListComponent,
         CarsFormComponent,
-        MessageComponent,
         HeaderComponent,
         LoadmorebuttonComponent
      ],

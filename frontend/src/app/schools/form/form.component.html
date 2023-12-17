@@ -1,5 +1,5 @@
 <div class="text-end mb-3">
-    <div class="btn-group btn-group-sm">
+    <div class="btn-group">
         <a [routerLink]="['/schools/add']" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Novo</a>
         <a [routerLink]="['/schools/list']" class="btn btn-primary"><i class="bi bi-list"></i> Listagem</a>
     </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-6">
                 <label for="phone">Telefone:</label>
-                <input type="text" class="form-control ngx-mask" formControlName="phone"  mask="(00) 0000-0000"/>
+                <input type="text" class="form-control" formControlName="phone"  mask="(00) 00000-0000"/>
             </div>
             <div class="col-md-6">
                 <label for="email">Email:</label>
@@ -36,5 +36,12 @@
                 <button class="btn btn-primary" *ngIf="!edit" (click)="create()"><i class="bi bi-send-check-fill"></i> Enviar</button>
             </div>
         </form>
+        <div class="alert alert-danger mt-3" *ngIf="errors.length > 0">
+            <div *ngFor="let error of errors">
+                <h6><i class="bi bi-x-circle-fill"></i> {{ error }}</h6>
+            </div>
+        </div>
+        <app-message [message]="message" [class]="class">
+        </app-message>
     </div>
 </div>

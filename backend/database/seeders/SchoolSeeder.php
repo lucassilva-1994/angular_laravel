@@ -13,10 +13,10 @@ class SchoolSeeder extends Seeder
     use Model;
     public function run(): void
     {
-        for($i=0; $i<100;$i++){
+        for($i=0; $i<10;$i++){
             $name = fake()->unique()->company();
             $email = self::generateEmail($name);
-            $cnpj = Generator::cnpj(true);
+            $cnpj = Generator::cnpj();
             $verify = School::whereNameOrCnpjOrEmail($name,$cnpj,$email)->exists();
             if(!$verify){
                 self::setData([

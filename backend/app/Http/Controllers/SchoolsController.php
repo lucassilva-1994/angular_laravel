@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Model;
+use App\Http\Requests\SchoolRequest;
 use App\Models\School;
 use Illuminate\Http\Request;
 
@@ -18,10 +19,10 @@ class SchoolsController extends Controller
         return response()->json(School::find($id));
     }
 
-    public function create(Request $request){
+    public function create(SchoolRequest $request){
         try {
             if(self::setData($request->all(),School::class)){
-                return response()->json('Registro inserindo com sucesso.');
+                return response()->json('Registro inserido com sucesso.');
             }
         } catch (\Throwable $th) {
             return response()->json($th);

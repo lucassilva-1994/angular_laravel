@@ -1,42 +1,55 @@
-<div class="card">
-    <div class="card-header">
-        <h3>Listagem {{ title }}</h3>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Ordem</th>
-                        <th>Nome</th>
-                        <th>CNPJ</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>Alunos</th>
-                        <th>Funcionários</th>
-                        <th>Criado em</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let school of schools" class="text-nowrap">
-                        <td>{{ school.order }}</td>
-                        <td>{{ school.name }}</td>
-                        <td>{{ school.cnpj }}</td>
-                        <td>{{ school.phone }}</td>
-                        <td>{{ school.email }}</td>
-                        <td>{{ school.students.length }}</td>
-                        <td>{{ school.employees.length }}</td>
-                        <td>{{ school.created_at |date:'dd/MM/yyyy HH:mm:ss'  }}</td>
-                        <td>
-                            <div class="btn-group btn-group-sm">
-                                <a [routerLink]="['/schools/edit',school.id]" class="btn btn-primary">Editar</a>
-                                <button class="btn btn-danger" (click)="delete(school.id)">Excluir</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div *ngIf="loading;else list">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border  text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 </div>
+<ng-template #list>
+    <div class="text-end mb-3">
+        <div class="btn-group">
+            <a [routerLink]="['/schools/add']" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Novo</a>
+            <a [routerLink]="['/schools/list']" class="btn btn-primary"><i class="bi bi-list"></i> Listagem</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>Listagem {{ title }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CNPJ</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Alunos</th>
+                            <th>Funcionários</th>
+                            <th>Criado em</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let school of schools" class="text-nowrap">
+                            <td>{{ school.name }}</td>
+                            <td>{{ school.cnpj|cnpj }}</td>
+                            <td>{{ school.phone|phone }}</td>
+                            <td>{{ school.email }}</td>
+                            <td>{{ school.students.length }}</td>
+                            <td>{{ school.employees.length }}</td>
+                            <td>{{ school.created_at |date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a [routerLink]="['/schools/edit',school.id]" class="btn btn-primary">Editar</a>
+                                    <button class="btn btn-danger" (click)="delete(school.id)">Excluir</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-template>

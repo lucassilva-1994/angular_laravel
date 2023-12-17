@@ -7,45 +7,58 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit{
-      form:FormGroup = this.formBuilder.group({
-        name:['',Validators.required],
-        cnpj:['',Validators.required],
-        address: ['',Validators.required],
-        phone:['',Validators.required],
-        email:['',Validators.required]
-      });
-      id:string='';
-      edit:boolean=false;
-      title:string = 'Cadastrar';
-      constructor(private formBuilder:FormBuilder, 
-        private schoolService:SchoolsService,
-        private route: ActivatedRoute){}
+export class FormComponent implements OnInit {
+  form: FormGroup = this.formBuilder.group({
+    name: ['', Validators.required],
+    cnpj: ['', Validators.required],
+    address: ['', Validators.required],
+    phone: ['', Validators.required],
+    email: ['', Validators.required]
+  });
+  id: string = '';
+  edit: boolean = false;
+  title: string = 'Cadastrar';
+  message: string = '';
+  class: string = '';
+  errors=[];
 
-      ngOnInit(): void { 
-        this.id = this.route.snapshot.params['id'];
-        if(this.id){
-          this.schoolService.getById(this.id).subscribe(school => {
-            this.form.patchValue(school);
-            this.edit=true;
-            this.title="Editar";
-          })
-        }
-      }
+  constructor(private formBuilder: FormBuilder,
+    private schoolService: SchoolsService,
+    private route: ActivatedRoute) { }
 
-      create(){
-        this.schoolService.create(this.form.getRawValue()).subscribe(response=>{
-          console.log(response)
-        },error=>{
-          console.log(error);
-        });
-      }
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.schoolService.getById(this.id).subscribe(school => {
+        this.form.patchValue(school);
+        this.edit = true;
+        this.title = "Editar";
+      })
+    }
+  }
 
-      update(){
-        this.schoolService.update(this.id,this.form.getRawValue()).subscribe(
-          school =>{
-            console.log(school)
-          }
-        );
+  create() {
+    this.schoolService.create(this.form.getRawValue()).subscribe(response => {
+      console.log(this.form.get('cnpj')?.value);
+      this.message = response.toString();
+      this.class = 'alert-success';
+      this.form.reset();
+      this.errors = [];
+    }, error => {
+        this.errors = Object.values(error.error.errors)
+        console.log(this.errors)
+    });
+  }
+
+  update() {
+    this.schoolService.update(this.id, this.form.getRawValue()).subscribe(
+      school => {
+        this.message = school.toString();
+        this.class = "alert-success";
+      }, () => {
+        this.message = "Falha ao atualizar registro.";
+        this.class = 'alert-danger';
       }
+    );
+  }
 }

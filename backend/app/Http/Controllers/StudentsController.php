@@ -10,7 +10,7 @@ class StudentsController extends Controller
 {
     use Model;
     public function get(){
-        $schools = Student::with('school')->paginate(50);
+        $schools = Student::paginate(50)->load('school')->flatten();
         return response()->json($schools);
     }
 
@@ -22,7 +22,7 @@ class StudentsController extends Controller
         try {
             $create = self::setData($request->all(),Student::class);
             if($create){
-                return response()->json([$create,'Registro inserindo com sucesso.']);
+                return response()->json([$create,'Registro inserido com sucesso.']);
             }
         } catch (\Throwable $th) {
             return response()->json($th);

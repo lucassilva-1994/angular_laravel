@@ -15,7 +15,7 @@ class EmployeeSeeder extends Seeder
     public function run(): void
     {
         $schools = School::get();
-        for($i=0;$i<5000;$i++){
+        for($i=0;$i<120;$i++){
             $name = fake()->unique()->name();
             $email = self::generateEmail($name);
             $cpf = Generator::cpf(true);

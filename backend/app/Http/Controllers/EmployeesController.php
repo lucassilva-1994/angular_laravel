@@ -10,7 +10,7 @@ class EmployeesController extends Controller
 {
     use Model;
     public function get(){
-        $schools = Employee::with('school')->paginate(50);
+        $schools = Employee::paginate(50)->load('school')->flatten();
         return response()->json($schools);
     }
 
@@ -21,7 +21,7 @@ class EmployeesController extends Controller
     public function create(Request $request){
         try {
             if(self::setData($request->all(),Employee::class)){
-                return response()->json('Registro inserindo com sucesso.');
+                return response()->json('Registro inserido com sucesso.');
             }
         } catch (\Throwable $th) {
             return response()->json($th);

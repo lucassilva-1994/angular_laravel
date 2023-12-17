@@ -7,13 +7,19 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { MessageComponent } from '../shared/message/message.component';
+import { CnpjPipe } from '../pipes/cnpj.pipe';
+import { PhonePipe } from '../pipes/phone.pipe';
 
 
 @NgModule({
   declarations: [
     SchoolsComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
+    MessageComponent,
+    CnpjPipe,
+    PhonePipe
   ],
   imports: [
     CommonModule,
