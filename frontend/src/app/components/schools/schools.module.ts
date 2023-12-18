@@ -10,6 +10,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { PhonePipe } from 'src/app/pipes/phone.pipe';
 import { CnpjPipe } from 'src/app/pipes/cnpj.pipe';
 import { MessageComponent } from 'src/app/shared/message/message.component';
+import { LoadmorebuttonComponent } from 'src/app/shared/loadmorebutton/loadmorebutton.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MessageComponent } from 'src/app/shared/message/message.component';
     FormComponent,
     MessageComponent,
     CnpjPipe,
-    PhonePipe
+    PhonePipe,
+    LoadmorebuttonComponent,
   ],
   imports: [
     CommonModule,

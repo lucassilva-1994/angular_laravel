@@ -12,14 +12,16 @@ export class ListComponent implements OnInit {
   title: string = 'escolas';
   loading: boolean = true;
   message: string = "Carregando...";
-  search:string='';
+  search: string = '';
+  currentPage: number = 1;
+  hasMore: boolean = true;
   constructor(private schoolService: SchoolsService) { }
   ngOnInit(): void {
     this.getSchools();
   }
 
   getSchools() {
-    this.schoolService.getSchools(this.search).subscribe(schools =>
+    this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools =>
       this.schools = Object.values(schools), error => {
         console.log(error);
       }, () => {
@@ -27,12 +29,19 @@ export class ListComponent implements OnInit {
       });
   }
 
-  schoolsFilter(){
+  schoolsFilter() {
     setTimeout(() => {
-      this.schoolService.getSchools(this.search).subscribe(schools => {
-        this.schools = Object.values(schools)
+      this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools => {
+        this.schools = Object.values(schools);
       });
     }, 400);
+  }
+
+  loadMore() {
+    this.schoolService.getSchools(++this.currentPage, this.search).subscribe(schools => {
+      this.schools.push(...Object.values(schools))
+      if(!Object.values(schools).length) this.hasMore = false;
+    })
   }
 
   delete(id: string) {

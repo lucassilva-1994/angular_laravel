@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./loadmorebutton.component.css']
 })
 export class LoadmorebuttonComponent implements OnInit{
-  @Input() hasMore:boolean = true;
+  @Input() hasMore:boolean = false;
 
   ngOnInit(): void {
     

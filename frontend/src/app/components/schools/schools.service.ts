@@ -12,8 +12,10 @@ export class SchoolsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSchools(search: string): Observable<School> {
-    let params = new HttpParams().set('search',search);
+  getSchools(page:number,search: string): Observable<School> {
+    let params = new HttpParams()
+    .set('search',search)
+    .set('page',page);
     return this.httpClient.get<School>(apiUrl + 'get', { params });
   }
 
