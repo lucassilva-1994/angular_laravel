@@ -15,6 +15,9 @@ class SchoolsController extends Controller
             $schools =  School::where('name','like',"%{$request->search}%")->paginate(10)->load('employees','students')->flatten();
             return response()->json($schools);
         }
+        if(!$request->has('search')){
+            return School::get();
+        }
         $schools = School::paginate(10)->load('employees','students')->flatten();
         return response()->json($schools);
     }

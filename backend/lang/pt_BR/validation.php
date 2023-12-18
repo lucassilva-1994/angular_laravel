@@ -214,9 +214,7 @@ return [
         'category' => 'categoria',
         'blood_type' => 'tipo sanguíneo',
         'birth_date' => 'data de nascimento',
-        'brand' => 'marca',
-        'model' => 'modelo',
-        'color' => 'cor',
+        'school_id' => 'escola'
     ],
 
 ];

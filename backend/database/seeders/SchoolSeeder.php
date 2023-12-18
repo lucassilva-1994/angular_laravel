@@ -13,7 +13,7 @@ class SchoolSeeder extends Seeder
     use Model;
     public function run(): void
     {
-        for($i=0; $i<10;$i++){
+        for($i=0; $i<100;$i++){
             $name = fake()->unique()->company();
             $email = self::generateEmail($name);
             $cnpj = Generator::cnpj();
@@ -22,7 +22,7 @@ class SchoolSeeder extends Seeder
                 self::setData([
                     'name' => $name,
                     'address' => fake()->address(),
-                    'phone' => fake()->phoneNumber(),
+                    'phone' => str_replace(['(',')','-',' '],'',fake()->phoneNumber()),
                     'email' =>$email,
                     'cnpj' => $cnpj
                 ],School::class);

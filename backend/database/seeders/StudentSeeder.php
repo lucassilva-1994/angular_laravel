@@ -18,14 +18,14 @@ class StudentSeeder extends Seeder
         for($i=0;$i<5000;$i++){
             $name = fake()->unique()->name();
             $email = self::generateEmail($name);
-            $cpf = Generator::cpf(true);
+            $cpf = Generator::cpf();
             $verify = Student::whereNameOrCpfOrEmail($name,$cpf,$email)->exists();
             if(!$verify){
                 self::setData([
                     'name' => $name,
                     'cpf' => $cpf,
                     'email' => $email,
-                    'phone' => fake()->phoneNumber(),
+                    'phone' => str_replace(['(',')','-',' '],'',fake()->phoneNumber()),
                     'birth_date' => fake()->date(),
                     'school_id' => Arr::random($schools->pluck('id')->toArray())
                 ],Student::class);
