@@ -5,10 +5,6 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './loadmorebutton.component.html',
   styleUrls: ['./loadmorebutton.component.css']
 })
-export class LoadmorebuttonComponent implements OnInit{
+export class LoadmorebuttonComponent{
   @Input() hasMore:boolean = false;
-
-  ngOnInit(): void {
-    
-  }
 }

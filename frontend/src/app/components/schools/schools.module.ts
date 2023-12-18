@@ -9,8 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { PhonePipe } from 'src/app/pipes/phone.pipe';
 import { CnpjPipe } from 'src/app/pipes/cnpj.pipe';
-import { MessageComponent } from 'src/app/shared/message/message.component';
-import { LoadmorebuttonComponent } from 'src/app/shared/loadmorebutton/loadmorebutton.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,17 +17,16 @@ import { LoadmorebuttonComponent } from 'src/app/shared/loadmorebutton/loadmoreb
     SchoolsComponent,
     ListComponent,
     FormComponent,
-    MessageComponent,
     CnpjPipe,
-    PhonePipe,
-    LoadmorebuttonComponent,
+    PhonePipe
   ],
   imports: [
     CommonModule,
     SchoolsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxMaskDirective,NgxMaskPipe
+    NgxMaskDirective,NgxMaskPipe,
+    SharedModule
   ],
   providers:[provideNgxMask()]
 })

@@ -3,16 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CarsModule } from './cars/cars.module';
+import { HeaderComponent } from './shared/header/header.component';
+import { SchoolsModule } from './components/schools/schools.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    CarsModule
+    SchoolsModule
+  ],
+  exports:[
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

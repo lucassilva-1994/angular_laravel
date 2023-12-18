@@ -1,0 +1,55 @@
+<div *ngIf="loading">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border  text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+    <div class="text-end mb-3">
+        <div class="btn-group">
+            <a [routerLink]="['/employees/add']" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Novo</a>
+            <a [routerLink]="['/employees/']" class="btn btn-primary"><i class="bi bi-list"></i> Listagem</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>Listagem {{ title }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <input type="text" class="form-control" placeholder="Digite sua busca aqui" [(ngModel)]="search"
+                (keyup)="employeesFilter()"/>
+                <app-message [message]="message" [class]="class" *ngIf="response"></app-message>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Escola</th>
+                            <th>Criado em</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of employees" class="text-nowrap">
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.cpf|cpf }}</td>
+                            <td>{{ employee.phone|phone }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>{{ employee.school.name }}</td>
+                            <td>{{ employee.created_at |date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a [routerLink]="['/employees/edit',employee.id]" class="btn btn-primary">Editar</a>
+                                    <button class="btn btn-danger" (click)="delete(employee.id)">Excluir</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <app-loadmorebutton [hasMore]="hasMore" (click)="loadMore()"></app-loadmorebutton>
+        </div>
+    </div>

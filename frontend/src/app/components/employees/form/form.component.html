@@ -1,0 +1,53 @@
+<div class="text-end mb-3">
+    <div class="btn-group">
+        <a [routerLink]="['/employees/add']" class="btn btn-success"><i class="bi bi-plus-circle-fill"></i> Novo</a>
+        <a [routerLink]="['/employees/']" class="btn btn-primary"><i class="bi bi-list"></i> Listagem</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>{{ title }}</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form" class="row">
+            <div class="col-md-9">
+                <label for="name">Nome:</label>
+                <input type="text" class="form-control" formControlName="name"/>
+            </div>
+            <div class="col-md-3">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control  ngx-mask" formControlName="cpf" mask="000.000.000-00"/>
+            </div>
+            <div class="col-md-6">
+                <label for="phone">Telefone:</label>
+                <input type="text" class="form-control" formControlName="phone"  mask="(00) 00000-0000"/>
+            </div>
+            <div class="col-md-6">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" formControlName="email"/>
+            </div>
+            <div class="col-md-4">
+                <label for="schools">Escola:</label>
+                <select class="form-select" formControlName="school_id">
+                        <option *ngFor="let school of schools" value="{{ school.id }}">{{ school.name }}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="birth_date">Data de nascimento</label>
+                <input type="date" class="form-control" formControlName="birth_date"/>
+            </div>
+            <div class="mt-3 d-grid col-md-4">
+                <button class="btn btn-primary" *ngIf="edit" (click)="update()"><i class="bi bi-send-check-fill"></i> Atualizar</button>
+                <button class="btn btn-primary" *ngIf="!edit" (click)="create()"><i class="bi bi-send-check-fill"></i> Enviar</button>
+            </div>
+        </form>
+        <div class="alert alert-danger mt-3" *ngIf="errors.length > 0">
+            <div *ngFor="let error of errors">
+                <h6><i class="bi bi-x-circle-fill"></i> {{ error }}</h6>
+            </div>
+        </div>
+        <app-message [message]="message" [class]="class" *ngIf="response"></app-message>
+    </div>
+</div>
+

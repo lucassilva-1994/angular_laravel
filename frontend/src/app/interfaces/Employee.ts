@@ -9,5 +9,5 @@ export interface Employee{
     phone:string;
     birth_date: Date;
     created_at: Date;
-    School:School
+    school:School
 }

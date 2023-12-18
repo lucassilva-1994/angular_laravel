@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolsService } from '../schools.service';
 import { School } from 'src/app/interfaces/School';
+import { LoadmorebuttonComponent } from 'src/app/shared/loadmorebutton/loadmorebutton.component';
 
 @Component({
   selector: 'app-list',
