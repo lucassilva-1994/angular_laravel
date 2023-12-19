@@ -31,6 +31,7 @@ export class ListComponent implements OnInit {
   }
 
   schoolsFilter() {
+    this.currentPage = 1;
     setTimeout(() => {
       this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools => {
         this.schools = Object.values(schools);

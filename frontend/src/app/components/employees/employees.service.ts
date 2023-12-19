@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from 'src/app/interfaces/Employee';
 import { School } from 'src/app/interfaces/School';
+import { Job } from 'src/app/interfaces/Job';
 
 const apiUrl = environment.apiUrl+'/employees/';
 const url = environment.apiUrl;
@@ -13,15 +14,18 @@ const url = environment.apiUrl;
 export class EmployeesService{
     constructor(private httpClient:HttpClient){}
 
+    getJobs():Observable<Job>{
+        return this.httpClient.get<Job>(url+'/jobs/get');
+    }
     getSchools():Observable<School>{
         return this.httpClient.get<School>(url+'/schools/get');
     }
 
-    getEmployees(page:number, search:string): Observable<Employee>{
+    getEmployees(page:number, search:string): Observable<Employee[]>{
         let params = new HttpParams()
         .set('search',search)
         .set('page',page)
-        return this.httpClient.get<Employee>(apiUrl+'get',{params});
+        return this.httpClient.get<Employee[]>(apiUrl+'get',{params});
     }
 
     getById(id:string):Observable<Employee>{

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Helpers\Model;
 use App\Models\Employee;
+use App\Models\Job;
 use App\Models\School;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
@@ -15,6 +16,7 @@ class EmployeeSeeder extends Seeder
     public function run(): void
     {
         $schools = School::get();
+        $jobs = Job::get();
         for($i=0;$i<120;$i++){
             $name = fake()->unique()->name();
             $email = self::generateEmail($name);
@@ -26,6 +28,7 @@ class EmployeeSeeder extends Seeder
                     'cpf' => $cpf,
                     'email' => $email,
                     'phone' => str_replace(['(',')','-',' '],'',fake()->phoneNumber()),
+                    'job_id' => Arr::random($jobs->pluck('id')->toArray()),
                     'birth_date' => fake()->date(),
                     'school_id' => Arr::random($schools->pluck('id')->toArray())
                 ],Employee::class);

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeesService } from '../employees.service';
 import { School } from './../../../interfaces/School';
+import { Job } from 'src/app/interfaces/Job';
 
 @Component({
   selector: 'app-form',
@@ -18,6 +19,7 @@ export class FormComponent implements OnInit {
   class: string = 'alert-success';
   id: string;
   schools: School[];
+  jobs: Job[];
   response: boolean = false;
   constructor(private formBuilder: FormBuilder,
     private router: ActivatedRoute,
@@ -29,7 +31,8 @@ export class FormComponent implements OnInit {
       email: [''],
       phone: [''],
       birth_date: [''],
-      school_id: [this.getSchools()]
+      school_id: [this.getSchools()],
+      job_id:[this.getJobs()]
     });
     this.id = this.router.snapshot.params['id'];
     if (this.id) {
@@ -67,8 +70,14 @@ export class FormComponent implements OnInit {
   }
 
   getSchools() {
-    this.employeeService.getSchools().subscribe(school => {
-      this.schools = Object.values(school);
+    this.employeeService.getSchools().subscribe(schools => {
+      this.schools = Object.values(schools);
     });
+  }
+
+  getJobs(){
+    this.employeeService.getJobs().subscribe(jobs => {
+      this.jobs = Object.values(jobs);
+    })
   }
 }

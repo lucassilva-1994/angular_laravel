@@ -23,12 +23,13 @@ export class ListComponent implements OnInit {
   }
 
   getEmployees() {
-    this.employeeService.getEmployees(this.currentPage, this.search).subscribe(employees => {
-      this.employees = Object.values(employees)
+    this.employeeService.getEmployees(this.currentPage, this.search).subscribe((employees:Employee[]) => {
+      this.employees = employees
     });
   }
 
   employeesFilter() {
+    this.currentPage = 1;
     this.employeeService.getEmployees(this.currentPage, this.search).subscribe(employees => {
       this.employees = Object.values(employees)
     });

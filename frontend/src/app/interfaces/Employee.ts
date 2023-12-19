@@ -1,3 +1,4 @@
+import { Job } from "./Job";
 import { School } from "./School";
 
 export interface Employee{
@@ -9,5 +10,6 @@ export interface Employee{
     phone:string;
     birth_date: Date;
     created_at: Date;
-    school:School
+    school:School;
+    job: Job
 }

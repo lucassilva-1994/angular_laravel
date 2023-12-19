@@ -34,6 +34,12 @@
                 </select>
             </div>
             <div class="col-md-4">
+                <label for="Jobs">Cargo:</label>
+                <select class="form-select" formControlName="job_id">
+                        <option *ngFor="let job of jobs" value="{{ job.id }}">{{ job.name }}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
                 <label for="birth_date">Data de nascimento</label>
                 <input type="date" class="form-control" formControlName="birth_date"/>
             </div>

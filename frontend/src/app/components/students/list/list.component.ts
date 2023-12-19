@@ -29,6 +29,7 @@ export class ListComponent implements OnInit {
   }
 
   studentsFilter() {
+    this.currentPage=1;
     this.studentsService.getStudents(this.currentPage, this.search).subscribe(students => {
       this.students = Object.values(students)
     });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Model;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -12,11 +13,19 @@ class EmployeesController extends Controller
     use Model;
     public function get(Request $request){
         if($request->has('search')){
-            $schools =  Employee::where('name','like',"%{$request->search}%")->paginate(10)->load('school')->flatten();
-            return response()->json($schools);
+            $search = $request->search;
+            $employees =  Employee::where('name','like',"%{$request->search}%")
+            ->orWhereHas('job',function(Builder $builder) use ($search){
+                $builder->where('name','like',"%{$search}%");
+            })
+            ->orWhereHas('school',function(Builder $builder) use ($search){
+                $builder->where('name','like',"%{$search}%");
+            })
+            ->paginate(10)->load('school','job')->flatten();
+            return response()->json($employees);
         }
-        $schools = Employee::paginate(10)->load('school')->flatten();
-        return response()->json($schools);
+        $employees = Employee::paginate(10)->load('school','job')->flatten();
+        return response()->json($employees);
     }
 
     public function getById(string $id){
