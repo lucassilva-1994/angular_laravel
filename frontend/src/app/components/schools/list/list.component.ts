@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
       this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools => {
         this.schools = Object.values(schools);
       });
-    }, 400);
+    }, 4000);
   }
 
   loadMore() {

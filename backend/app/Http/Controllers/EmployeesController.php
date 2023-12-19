@@ -10,8 +10,12 @@ use Illuminate\Http\Request;
 class EmployeesController extends Controller
 {
     use Model;
-    public function get(){
-        $schools = Employee::paginate(50)->load('school')->flatten();
+    public function get(Request $request){
+        if($request->has('search')){
+            $schools =  Employee::where('name','like',"%{$request->search}%")->paginate(10)->load('school')->flatten();
+            return response()->json($schools);
+        }
+        $schools = Employee::paginate(10)->load('school')->flatten();
         return response()->json($schools);
     }
 

@@ -5,34 +5,40 @@ import { Employee } from 'src/app/interfaces/Employee';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
   employees: Employee[];
   title: string = 'funcionários';
   search: string = '';
   loading: boolean = false;
-  hasMore: boolean = false;
   message: string = '';
   class: string;
-  response: boolean = false;
+  response: boolean;
+  currentPage:number= 1;
+  hasMore:boolean = true;
   constructor(private employeeService: EmployeesService) { }
   ngOnInit(): void {
     this.getEmployees();
   }
 
   getEmployees() {
-    this.employeeService.getEmployees().subscribe(employees => {
+    this.employeeService.getEmployees(this.currentPage, this.search).subscribe(employees => {
       this.employees = Object.values(employees)
     });
   }
 
   employeesFilter() {
-
+    this.employeeService.getEmployees(this.currentPage, this.search).subscribe(employees => {
+      this.employees = Object.values(employees)
+    });
   }
 
   loadMore() {
-
+    this.employeeService.getEmployees(++this.currentPage, this.search).subscribe(employees => {
+      this.employees.push(...Object.values(employees))
+      if(!Object.values(employees).length) this.hasMore = false;
+    })
   }
 
   delete(id: string) {

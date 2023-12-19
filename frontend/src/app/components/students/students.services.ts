@@ -2,38 +2,38 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Employee } from 'src/app/interfaces/Employee';
 import { School } from 'src/app/interfaces/School';
+import { Student } from './../../interfaces/Student';
 
-const apiUrl = environment.apiUrl+'/employees/';
+const apiUrl = environment.apiUrl+'/students/';
 const url = environment.apiUrl;
 @Injectable({
     providedIn:'root'
 })
-export class EmployeesService{
+export class StudentsService{
     constructor(private httpClient:HttpClient){}
 
     getSchools():Observable<School>{
         return this.httpClient.get<School>(url+'/schools/get');
     }
 
-    getEmployees(page:number, search:string): Observable<Employee>{
+    getStudents(page:number, search:string): Observable<Student>{
         let params = new HttpParams()
         .set('search',search)
         .set('page',page)
-        return this.httpClient.get<Employee>(apiUrl+'get',{params});
+        return this.httpClient.get<Student>(apiUrl+'get',{params});
     }
 
-    getById(id:string):Observable<Employee>{
-        return this.httpClient.get<Employee>(apiUrl+'getById/'+id);
+    getById(id:string):Observable<Student>{
+        return this.httpClient.get<Student>(apiUrl+'getById/'+id);
     }
 
-    create(Employee:Employee){
-        return this.httpClient.post(apiUrl+'create',Employee);
+    create(Student:Student){
+        return this.httpClient.post(apiUrl+'create',Student);
     }
 
-    update(id:string,Employee:Employee){
-        return this.httpClient.put(apiUrl+'update/'+id,Employee);
+    update(id:string,Student:Student){
+        return this.httpClient.put(apiUrl+'update/'+id,Student);
     }
 
     delete(id:string){
