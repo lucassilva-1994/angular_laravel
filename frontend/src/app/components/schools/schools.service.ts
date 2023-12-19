@@ -12,11 +12,11 @@ export class SchoolsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSchools(page:number,search: string): Observable<School> {
+  getSchools(page:number,search: string): Observable<School[]> {
     let params = new HttpParams()
     .set('search',search)
     .set('page',page);
-    return this.httpClient.get<School>(apiUrl + 'get', { params });
+    return this.httpClient.get<School[]>(apiUrl + 'get', { params });
   }
 
   getById(id: string) {

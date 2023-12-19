@@ -13,15 +13,15 @@ const url = environment.apiUrl;
 export class StudentsService{
     constructor(private httpClient:HttpClient){}
 
-    getSchools():Observable<School>{
-        return this.httpClient.get<School>(url+'/schools/get');
+    getSchools():Observable<School[]>{
+        return this.httpClient.get<School[]>(url+'/schools/get');
     }
 
-    getStudents(page:number, search:string): Observable<Student>{
+    getStudents(page:number, search:string): Observable<Student[]>{
         let params = new HttpParams()
         .set('search',search)
         .set('page',page)
-        return this.httpClient.get<Student>(apiUrl+'get',{params});
+        return this.httpClient.get<Student[]>(apiUrl+'get',{params});
     }
 
     getById(id:string):Observable<Student>{

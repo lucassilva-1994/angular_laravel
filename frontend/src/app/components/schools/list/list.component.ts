@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
 
   getSchools() {
     this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools =>
-      this.schools = Object.values(schools), error => {
+      this.schools = schools, error => {
         console.log(error);
       }, () => {
         this.loading = false;
@@ -34,15 +34,15 @@ export class ListComponent implements OnInit {
     this.currentPage = 1;
     setTimeout(() => {
       this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools => {
-        this.schools = Object.values(schools);
+        this.schools = schools;
       });
     }, 4000);
   }
 
   loadMore() {
     this.schoolService.getSchools(++this.currentPage, this.search).subscribe(schools => {
-      this.schools.push(...Object.values(schools))
-      if(!Object.values(schools).length) this.hasMore = false;
+      this.schools.push(...schools)
+      if(!schools.length) this.hasMore = false;
     })
   }
 

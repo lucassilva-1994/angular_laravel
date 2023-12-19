@@ -14,11 +14,11 @@ const url = environment.apiUrl;
 export class EmployeesService{
     constructor(private httpClient:HttpClient){}
 
-    getJobs():Observable<Job>{
-        return this.httpClient.get<Job>(url+'/jobs/get');
+    getJobs():Observable<Job[]>{
+        return this.httpClient.get<Job[]>(url+'/jobs/get');
     }
-    getSchools():Observable<School>{
-        return this.httpClient.get<School>(url+'/schools/get');
+    getSchools():Observable<School[]>{
+        return this.httpClient.get<School[]>(url+'/schools/get');
     }
 
     getEmployees(page:number, search:string): Observable<Employee[]>{

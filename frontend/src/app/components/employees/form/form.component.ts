@@ -71,13 +71,13 @@ export class FormComponent implements OnInit {
 
   getSchools() {
     this.employeeService.getSchools().subscribe(schools => {
-      this.schools = Object.values(schools);
+      this.schools = schools;
     });
   }
 
   getJobs(){
     this.employeeService.getJobs().subscribe(jobs => {
-      this.jobs = Object.values(jobs);
+      this.jobs = jobs;
     })
   }
 }

@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
   }
 
   getEmployees() {
-    this.employeeService.getEmployees(this.currentPage, this.search).subscribe((employees:Employee[]) => {
+    this.employeeService.getEmployees(this.currentPage, this.search).subscribe(employees => {
       this.employees = employees
     });
   }
@@ -31,14 +31,14 @@ export class ListComponent implements OnInit {
   employeesFilter() {
     this.currentPage = 1;
     this.employeeService.getEmployees(this.currentPage, this.search).subscribe(employees => {
-      this.employees = Object.values(employees)
+      this.employees = employees
     });
   }
 
   loadMore() {
     this.employeeService.getEmployees(++this.currentPage, this.search).subscribe(employees => {
-      this.employees.push(...Object.values(employees))
-      if(!Object.values(employees).length) this.hasMore = false;
+      this.employees.push(...employees)
+      if(!employees.length) this.hasMore = false;
     })
   }
 

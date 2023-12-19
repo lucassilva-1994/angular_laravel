@@ -24,21 +24,21 @@ export class ListComponent implements OnInit {
 
   getStudents() {
     this.studentsService.getStudents(this.currentPage, this.search).subscribe(students => {
-      this.students = Object.values(students)
+      this.students = students
     });
   }
 
   studentsFilter() {
     this.currentPage=1;
     this.studentsService.getStudents(this.currentPage, this.search).subscribe(students => {
-      this.students = Object.values(students)
+      this.students = students
     });
   }
 
   loadMore() {
     this.studentsService.getStudents(++this.currentPage, this.search).subscribe(students => {
-      this.students.push(...Object.values(students))
-      if(!Object.values(students).length) this.hasMore = false;
+      this.students.push(...students)
+      if(!students.length) this.hasMore = false;
     })
   }
 

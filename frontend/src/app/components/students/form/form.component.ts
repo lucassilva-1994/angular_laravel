@@ -67,8 +67,8 @@ export class FormComponent implements OnInit {
   }
 
   getSchools() {
-    this.studentService.getSchools().subscribe(school => {
-      this.schools = Object.values(school);
+    this.studentService.getSchools().subscribe(schools => {
+      this.schools = schools;
     });
   }
 }
