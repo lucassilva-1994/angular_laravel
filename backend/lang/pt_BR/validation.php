@@ -214,7 +214,8 @@ return [
         'category' => 'categoria',
         'blood_type' => 'tipo sanguíneo',
         'birth_date' => 'data de nascimento',
-        'school_id' => 'escola'
+        'school_id' => 'escola',
+        'job_id' => 'cargo'
     ],
 
 ];

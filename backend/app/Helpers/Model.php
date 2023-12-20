@@ -6,6 +6,9 @@ use Ramsey\Uuid\Uuid;
             $data['id'] = self::setUuid();
             $data['order'] = self::setOrder($model);
             $data['created_at'] = now();
+            if(isset($data['password'])){
+                $data['password'] = bcrypt($data['password']);
+            }
             return $model::create($data);
         }
 

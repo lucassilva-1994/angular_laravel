@@ -11,11 +11,11 @@ return new class extends Migration
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->bigInteger('order');
+            $table->integer('order');
             $table->string('name',100);
-            $table->string('cpf',14)->unique();
+            $table->string('cpf',11)->unique();
             $table->string('email',100)->unique();
-            $table->string('phone',20)->unique();
+            $table->string('phone',11);
             $table->date('birth_date');
             $table->foreignUuid('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreignUuid('school_id')->references('id')->on('schools')->onDelete('cascade');

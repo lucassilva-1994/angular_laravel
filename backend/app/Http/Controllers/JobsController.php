@@ -40,7 +40,7 @@ class JobsController extends Controller
 
     public function update(JobRequest $request, string $id){
         if(self::updatedata(Job::class,$request->all(),['id' => $id])){
-            return response()->json('Registrado atualizado com sucesso.');
+            return response()->json('Registro atualizado com sucesso.');
         }
     }
 

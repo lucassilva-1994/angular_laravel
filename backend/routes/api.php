@@ -3,14 +3,15 @@ use App\Http\Controllers\{
     EmployeesController,
     SchoolsController,
     StudentsController,
-    JobsController
+    JobsController,
+    UsersController
 };
 use Illuminate\Support\Facades\Route;
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
+Route::controller(UsersController::class)->group(function(){
+    Route::post('/signin','signIn');
+    Route::post('/signup','signUp');
+    Route::post('/signout','signOut')->middleware('auth:sanctum');
+});
 
 Route::controller(SchoolsController::class)->prefix('/schools')->group(function(){
     Route::get('/get','get');

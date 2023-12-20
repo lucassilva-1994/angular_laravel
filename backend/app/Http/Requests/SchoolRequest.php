@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SchoolRequest extends FormRequest
 {
@@ -13,11 +14,11 @@ class SchoolRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:schools,name',
-            'cnpj' => 'required|unique:schools,cnpj',
-            'phone' => 'required',
-            'email' => 'required|unique:schools,email',
-            'address' => 'required'
+            'name' => ['required','max:100', Rule::unique('schools')->ignore($this->id)],
+            'cnpj' => ['required','max:14', Rule::unique('schools')->ignore($this->id)],
+            'phone' => ['required','max:11'],
+            'email' => ['required','max:100', Rule::unique('schools')->ignore($this->id)],
+            'address' => ['nullable','max:100']
         ];
     }
 }

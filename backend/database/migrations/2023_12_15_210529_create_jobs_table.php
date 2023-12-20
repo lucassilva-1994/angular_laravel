@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('order');
-            $table->string('name',255);
+            $table->string('name',100);
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
         });

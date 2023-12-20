@@ -45,7 +45,7 @@ class EmployeesController extends Controller
 
     public function update(EmployeeRequest $request, string $id){
         if(self::updatedata(Employee::class,$request->all(),['id' => $id])){
-            return response()->json('Registrado atualizado com sucesso.');
+            return response()->json('Registro atualizado com sucesso.');
         }
     }
 

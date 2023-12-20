@@ -37,7 +37,7 @@ class StudentsController extends Controller
 
     public function update(StudentRequest $request, string $id){
         if(self::updatedata(Student::class,$request->all(),['id' => $id])){
-            return response()->json('Registrado atualizado com sucesso.');
+            return response()->json('Registro atualizado com sucesso.');
         }
     }
 
