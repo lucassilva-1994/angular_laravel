@@ -17,7 +17,7 @@ class EmployeeRequest extends FormRequest
             'name' => ['required','max:100'],
             'cpf' => ['required','max:11',Rule::unique('employees')->ignore($this->id)],
             'email' => ['required','max:100',Rule::unique('employees')->ignore($this->id)],
-            'phone' => ['required','max:10'],
+            'phone' => ['required','max:11'],
             'birth_date' => ['required','date'],
             'school_id' => ['required'],
             'job_id' => ['required']

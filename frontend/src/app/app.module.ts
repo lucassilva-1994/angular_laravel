@@ -9,12 +9,12 @@ import { HeaderComponent } from './shared/header/header.component';
 import { SchoolsModule } from './components/schools/schools.module';
 import { EmployeesModule } from './components/employees/employees.module';
 import { StudentsModule } from './components/students/students.module';
-import { LoadmorebuttonComponent } from './shared/loadmorebutton/loadmorebutton.component';
+import { UserModule } from './components/users/users.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,8 @@ import { LoadmorebuttonComponent } from './shared/loadmorebutton/loadmorebutton.
     AppRoutingModule,
     SchoolsModule,
     EmployeesModule,
-    StudentsModule
+    StudentsModule,
+    UserModule
   ],
   exports: [
     HttpClientModule

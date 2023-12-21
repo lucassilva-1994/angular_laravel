@@ -11,7 +11,7 @@ class UsersController extends Controller
             $token = $request->user()->createToken('user'); 
             return response()->json([
                 'token' => $token->plainTextToken,
-                'user' => $request->user()
+                'user' => $request->user()->makeHidden('order','created_at','updated_at')
             ]);
         }
         return response()->json('Email e senha inválidos.');
