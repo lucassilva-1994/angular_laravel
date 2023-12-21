@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['students/']" routerLinkActive="link-light">Alunos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link">{{ username$ | async }}</a>
+                </li>
             </ul>
         </div>
     </div>
