@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { LocalStorageService } from './../../core/localStorage.service';
+import { LocalStorageService } from '../../services/localStorage.service';
 import { BehaviorSubject } from "rxjs";
 
 @Component({

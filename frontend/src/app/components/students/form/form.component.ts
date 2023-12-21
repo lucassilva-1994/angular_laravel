@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { School } from './../../../interfaces/School';
-import { StudentsService } from '../students.services';
+import { StudentsService } from '../../../services/students.service';
 
 @Component({
   selector: 'app-form',

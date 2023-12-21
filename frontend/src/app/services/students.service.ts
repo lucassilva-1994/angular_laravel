@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { School } from 'src/app/interfaces/School';
-import { Student } from './../../interfaces/Student';
+import { Student } from '../interfaces/Student';
 
 const apiUrl = environment.apiUrl+'/students/';
 const url = environment.apiUrl;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { EmployeesService } from '../employees.service';
+import { EmployeesService } from '../../../services/employees.service';
 import { School } from './../../../interfaces/School';
 import { Job } from 'src/app/interfaces/Job';
 
