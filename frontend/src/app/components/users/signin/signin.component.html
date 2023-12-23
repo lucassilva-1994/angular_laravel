@@ -9,25 +9,33 @@
                     <form [formGroup]="form" (submit)="auth()">
                         <div class="mb-3">
                             <label for="email" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="email" 
-                            placeholder="Seu e-mail" formControlName="email">
+                            <input type="email" class="form-control" id="email" placeholder="Seu e-mail"
+                                formControlName="email" autocomplete="off" autofocus>
+                            <span class="text-danger"
+                             *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">
+                                Email é obrigatório.
+                            </span>
+                            <span class="text-danger" 
+                            *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched">
+                                Email inválido.
+                            </span>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="password" 
-                            placeholder="Sua senha" formControlName="password">
+                            <input type="password" class="form-control" id="password" placeholder="Sua senha"
+                                formControlName="password">
+                            <span class="text-danger" 
+                            *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">
+                                Senha é obrigatório.
+                            </span>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Entrar</button>
+                            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Entrar</button>
                         </div>
                     </form>
-                    <app-message [message]="message"  [class]="class">
-        
-                    </app-message>
+                    <app-message [message]="message" [class]="class"></app-message>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-

@@ -10,7 +10,7 @@ class UsersController extends Controller
         if(auth()->attempt($request->only('email','password'))){
             $token = $request->user()->createToken('user'); 
             return response()->json([
-                'token' => $token->plainTextToken,
+                'token' => "Bearer $token->plainTextToken",
                 'user' => $request->user()->makeHidden('order','created_at','updated_at')
             ]);
         }

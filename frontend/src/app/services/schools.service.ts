@@ -3,24 +3,21 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { School } from 'src/app/interfaces/School';
-
+import { HeaderService } from './header.service';
 const apiUrl = environment.apiUrl+'/schools/';
-const headers = new HttpHeaders({
-  'Authorization': `Bearer 8|hyi1lQULQJK2nECSv3W25zt2mizXI41o5DKTU0lCb95f54a9`
-});
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolsService {
-
-
-  constructor(private httpClient: HttpClient) { }
-
+  constructor(private httpClient: HttpClient, private headerService:HeaderService) {
+   }
   getSchools(page:number,search: string): Observable<School[]> {
+    const headers = this.headerService.getHeaders();
     let params = new HttpParams()
     .set('search',search)
     .set('page',page);
     return this.httpClient.get<School[]>(apiUrl + 'get', { params,headers });
+    
   }
 
   getById(id: string) {

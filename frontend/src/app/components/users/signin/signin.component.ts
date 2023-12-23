@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,13 +18,15 @@ export class SigninComponent implements OnInit{
     private route: Router){}
   ngOnInit(): void {
       this.form = this.formBuilder.group({
-        email:[''],
-        password:['']
+        email:[null,[Validators.required,Validators.email]],
+        password:[null,[Validators.required]]
       });
   }
 
   auth(){
-    this.usersService.auth(this.form.getRawValue()).subscribe(()=>{
+    const email = this.form.get('email')?.value;
+    const password = this.form.get('password')?.value;
+    this.usersService.auth(email,password).subscribe(()=>{
       this.route.navigate(['/schools']);
     });
   }

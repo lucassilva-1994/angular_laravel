@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolsService } from '../../../services/schools.service';
 import { School } from 'src/app/interfaces/School';
-import { LoadmorebuttonComponent } from 'src/app/shared/loadmorebutton/loadmorebutton.component';
 
 @Component({
   selector: 'app-list',
@@ -11,8 +10,9 @@ import { LoadmorebuttonComponent } from 'src/app/shared/loadmorebutton/loadmoreb
 export class ListComponent implements OnInit {
   schools: School[] = [];
   title: string = 'escolas';
-  loading: boolean = true;
+  loading: boolean = false;
   message: string = "Carregando...";
+  class:string = "alert-primary";
   search: string = '';
   currentPage: number = 1;
   hasMore: boolean = true;
@@ -24,9 +24,8 @@ export class ListComponent implements OnInit {
   getSchools() {
     this.schoolService.getSchools(this.currentPage, this.search).subscribe(schools =>
       this.schools = schools, error => {
-        console.log(error);
-      }, () => {
-        this.loading = false;
+        this.class = 'alert-danger';
+        this.message = error.statusText;
       });
   }
 

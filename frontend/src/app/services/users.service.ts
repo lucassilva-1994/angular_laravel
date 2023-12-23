@@ -14,8 +14,8 @@ export class UsersService {
         private httpClient: HttpClient,
         private localStorageService: LocalStorageService) { }
 
-    auth(user: User) {
-        return this.httpClient.post(apiUrl + '/signin', user)
+    auth(email:string, password:string) {
+        return this.httpClient.post(apiUrl + '/signin', {email,password})
             .pipe(tap(res => {
                 this.localStorageService.setItem(res);
             }));
