@@ -4,9 +4,9 @@ import { LocalStorageService } from '../services/localStorage.service';
 
 export const authGuard = () => {
   const router = inject(Router);
-  const localStorage = inject(LocalStorageService);
+  const localStorageService = inject(LocalStorageService);
 
-  if(localStorage.getItem('token')) {
+  if(localStorageService.getItem('token')) {
     return true;
   } else {
     router.navigate(['/']);

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -10,6 +10,7 @@ import { SchoolsModule } from './components/schools/schools.module';
 import { EmployeesModule } from './components/employees/employees.module';
 import { StudentsModule } from './components/students/students.module';
 import { UserModule } from './components/users/users.module';
+import { TokenInterceptorInterceptor } from './core/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { UserModule } from './components/users/users.module';
     HeaderComponent,
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     SchoolsModule,
@@ -28,7 +29,11 @@ import { UserModule } from './components/users/users.module';
   exports: [
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
