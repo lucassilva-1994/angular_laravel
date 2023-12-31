@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { tap } from "rxjs";
-import { User } from "src/app/interfaces/User";
 import { environment } from "src/environments/environment";
 import { LocalStorageService } from './localStorage.service';
 

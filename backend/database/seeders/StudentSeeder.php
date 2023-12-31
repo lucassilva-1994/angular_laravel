@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Helpers\Model;
-use App\Models\School;
-use App\Models\Student;
+use App\Helpers\{HelperGeneric, Model};
+use App\Models\{School, Student};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Avlima\PhpCpfCnpjGenerator\Generator;
@@ -12,10 +11,11 @@ use Avlima\PhpCpfCnpjGenerator\Generator;
 class StudentSeeder extends Seeder
 {
     use Model;
+    use HelperGeneric;
     public function run(): void
     {
         $schools = School::get();
-        for($i=0;$i<5000;$i++){
+        for($i=0;$i<15000;$i++){
             $name = fake()->unique()->name();
             $email = self::generateEmail($name);
             $cpf = Generator::cpf();
@@ -31,12 +31,5 @@ class StudentSeeder extends Seeder
                 ],Student::class);
             }
         }
-    }
-
-    private static function generateEmail($name)
-    {
-        $name = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
-        $name =  preg_replace('/[^a-zA-Z0-9]/', '', strtolower(str_replace([' ', 'Dr.', 'Sr.', 'Srta.', 'Sra.'], '', $name)));
-        return $name . '@' . Arr::random([fake()->freeEmailDomain()]);
     }
 }

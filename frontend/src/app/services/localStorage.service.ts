@@ -9,10 +9,10 @@ export class LocalStorageService{
     setItem(res:Object){
         const response = JSON.parse(JSON.stringify(res));
         localStorage.setItem('token',response.token);
-        localStorage.setItem('user_id',response.user.id);
-        localStorage.setItem('name',response.user.name);
-        localStorage.setItem('email',response.user.email);
-        localStorage.setItem('username',response.user.username);
+        localStorage.setItem('user_id',response.user_id);
+        localStorage.setItem('name',response.name);
+        localStorage.setItem('email',response.email);
+        localStorage.setItem('username',response.username);
     }
 
     removeItens(){

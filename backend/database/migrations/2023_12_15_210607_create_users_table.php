@@ -12,11 +12,9 @@ return new class extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('order');
-            $table->string('name',100);
-            $table->string('username',100)->unique();
-            $table->string('email',100)->unique();
             $table->string('password',100);
             $table->dateTime('created_at');
+            $table->foreignUuid('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->dateTime('updated_at')->nullable();
         });
     }
